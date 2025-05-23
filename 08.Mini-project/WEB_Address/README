@@ -1,0 +1,42 @@
+
+# 본 파일은 주소록 기능만 구현됩니다.
+
+welcome.jsp로 입장은
+http://localhost:8181/myapp/
+http://아이피:8181/myapp/
+중 하나로 가능합니다.
+
+    - 작성 완료 된 Page
+
+        1. home page
+        2. sub page
+        3. list page(회원 가입자 리스트)
+        4. signup page (회원가입)
+        5. login page(로그인)
+        6. update page(정보 수정)
+        7. delete page(삭제 전 삭제 확인 page)
+        8. view page(회원 정보 page)
+
+    - home page
+        - 슬라이드 이미지 링크 구현
+        - 검색기능 미구현
+        - 제품 설명, contact us 등 모든 page는 subPage로 forwording 됨
+    - sub page
+        - 회원가입, 로그인 혹은 homepage로 돌아가기 기능 제공
+    - list page
+        - 회원 가입 후, 로그인 시 forwording 되는 page
+        - 회원 가입 된 모든 정보 확인, 수정, 삭제 가능
+        - 검색 기능 구현 됨. 문자 입력시 이름에 해당 문자가 들어간 모든 회원을 list함.
+    - signup page
+        - 회원가입 기능. 
+        - 가입 완료 시 login page로 forwording, 실패시 오류란 표시
+    - login page
+        - login 기능 구현
+    - view page
+        - list에서 사람을 클릭하거나, 검색하여 들어가면 나오는 page
+        - 정보수정, 혹은 삭제, list page 중 선택 가능
+    - update page
+        - view page에서 수정을 누를시 나오는 창.
+        - 정보 수정가능
+    - delete page
+        - 회원 정보 삭제시 삭제전 확인을 위한 page 

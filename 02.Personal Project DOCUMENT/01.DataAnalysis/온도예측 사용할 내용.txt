@@ -1,0 +1,21 @@
+
+농산물가격예측
+
+
+
+구현할 모델 
+https://github.com/jungsungmoon/nongsan/blob/main/README.md
+
+
+https://dacon.io/competitions/official/235801/codeshare/4063?page=1&dtype=recent&ptype&fType&category
+https://github.com/jungsungmoon/nongsan
+
+
+데이터 전처리 코드 https://dacon.io/competitions/official/235801/codeshare/3233?page=1&dtype=recent
+
+온도예측
+
+https://dacon.io/competitions/official/235793/codeshare/3668?page=1&dtype=random
+
+
+https://dacon.io/competitions/official/235793/codeshare/3674?page=1&dtype=random

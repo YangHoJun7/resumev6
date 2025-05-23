@@ -1,0 +1,37 @@
+sequenceDiagram
+    actor User
+    participant Frontend
+    participant AuthController
+    participant EmailService
+    participant UserService
+    participant Database
+
+    User->>Frontend: 1. 회원가입 페이지 접속
+    Frontend->>+User: 2. 회원가입 폼 표시
+    
+    Note over User,Frontend: 이메일 인증 프로세스(Google SMTP)
+    User->>Frontend: 3. 이메일 입력
+    Frontend->>+AuthController: 4. POST /emails/verification-requests
+    AuthController->>+EmailService: 5. 인증코드 생성 및 이메일 발송
+    EmailService-->>-AuthController: 6. 이메일 발송 결과
+    AuthController-->>-Frontend: 7. 발송 성공 여부
+    Frontend->>User: 8. "이메일이 전송되었습니다" 알림
+    
+    Note over User,Frontend: 이메일 인증코드 확인
+    User->>Frontend: 9. 인증코드 입력
+    Frontend->>+AuthController: 10. POST /emails/verifications
+    AuthController->>AuthController: 11. 인증코드 검증
+    AuthController-->>-Frontend: 12. 인증 결과
+    Frontend->>User: 13. "이메일이 인증되었습니다" 알림
+    
+    Note over User,Frontend: 회원가입 완료
+    User->>Frontend: 14. 사용자명/비밀번호 입력 후 가입
+    Frontend->>+AuthController: 15. POST /signup
+    AuthController->>+UserService: 16. 사용자 정보 검증
+    UserService->>+Database: 17. 중복 사용자 확인
+    Database-->>-UserService: 18. 확인 결과
+    UserService->>UserService: 19. 비밀번호 암호화
+    UserService->>Database: 20. 사용자 정보 저장
+    UserService-->>-AuthController: 21. 저장 완료
+    AuthController-->>-Frontend: 22. "회원가입을 축하합니다" 응답
+    Frontend->>User: 23. 로그인 페이지로 이동

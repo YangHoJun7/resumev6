@@ -1,0 +1,9 @@
+RESUME_public/
+# 무시할 특정 하위 디렉토리만 지정 (전체 reactEx 폴더는 무시하지 않음)
+09.Bootcamp Study/Study_Practice/02. reactEx/ch02_jsx/
+09.Bootcamp Study/Study_Practice/02. reactEx/ch03_jsx/
+
+# 대용량 확장자만 무시
+*.pptx
+*.zip
+*.mp4RESUME_public/

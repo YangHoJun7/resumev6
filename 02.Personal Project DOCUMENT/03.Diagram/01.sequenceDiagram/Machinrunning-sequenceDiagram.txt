@@ -1,0 +1,48 @@
+sequenceDiagram
+    box 데이터 분석 파트
+    participant JN as Jupyter Notebook
+    participant ML as Python ML 처리
+    participant CSV as 예측데이터.csv
+    end
+    
+    box 프론트엔드
+    participant User as User
+    participant FE as React Frontend
+    end
+    
+    box 백엔드
+    participant BE as Spring Backend
+    participant DB as MariaDB
+    end
+
+    Note over JN,CSV: ML 모델 학습 및 예측 (최초 1회)
+    JN->>ML: 1. ML 코드 실행
+    ML->>ML: 2. 데이터 전처리
+    ML->>ML: 3. 모델 학습
+    ML->>ML: 4. 예측 수행
+    ML->>CSV: 5. 예측 결과 저장
+    
+    Note over User,DB: 실시간 서비스 흐름
+    User->>FE: 6. 대시보드 접속
+    FE->>+BE: 7. GET /api/predictions 요청
+    
+    alt 미인증 상태
+        BE-->>FE: 7.1 인증 필요 응답
+        FE->>User: 7.2 로그인 페이지로 이동
+    else 인증 상태
+        BE->>+DB: 8. 사용자 권한 확인
+        DB-->>-BE: 9. 권한 정보 반환
+        BE->>CSV: 10. 예측 데이터 읽기
+        BE->>BE: 11. UI용 데이터 가공
+        BE-->>-FE: 12. 가공된 데이터 전송
+        
+        FE->>FE: 13. 대시보드용 데이터 포맷팅
+        FE->>User: 14. 대시보드 표시
+        
+        Note over User,FE: 대시보드 상호작용
+        User->>FE: 15. 기간/농산물 선택
+        FE->>+BE: 16. 필터링된 데이터 요청
+        BE->>BE: 17. 데이터 필터링 처리
+        BE-->>-FE: 18. 필터링된 데이터 전송
+        FE->>User: 19. 대시보드 화면 업데이트
+    end

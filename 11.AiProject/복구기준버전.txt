@@ -1,0 +1,11 @@
+Docker 27.1.1
+Python 3.12.4
+
+
+Google lab
+Python 3.10.12
+
+
+
+
+Google colab, python 

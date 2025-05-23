@@ -1,0 +1,26 @@
+sequenceDiagram
+    actor User
+    participant Frontend
+    participant CPCFBackend
+    participant KamisAPI
+
+    User->>Frontend: 대분류/세부품목 선택
+    
+    Frontend->>+CPCFBackend: /api/agricultural/daily-price 요청
+    
+    CPCFBackend->>+KamisAPI: XML.do?action=dailySalesList 요청
+    Note over CPCFBackend,KamisAPI: p_cert_key, p_cert_id, p_returntype=json 포함
+    
+    KamisAPI-->>-CPCFBackend: JSON 형식의 가격 데이터 응답
+    
+    CPCFBackend->>CPCFBackend: 데이터 가공
+    Note over CPCFBackend: 에러 처리<br/>날짜/가격 정보 파싱<br/>카테고리별 필터링
+    
+    CPCFBackend-->>-Frontend: 가공된 가격 데이터 전달
+    
+    Frontend->>Frontend: 데이터 시각화
+    Note over Frontend: 차트 생성<br/>가격 변동률 계산<br/>UI 업데이트
+    
+    Frontend-->>User: 대시보드 표시
+    Note over User,Frontend: 가격 정보 테이블<br/>변동률<br/>라인 차트
+
